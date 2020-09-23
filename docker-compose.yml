@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./docker/app/Dockerfile
+    volumes:
+      - ./:/app/
+      - ./docker/mysql/wait_for_mysqld.sh:/wait_for_mysqld.sh
+    ports:
+      - "${DJANGO_PORT}:${DJANGO_PORT}"
+    command: |
+      sh -c 'pip install -r requirements.txt && /wait_for_mysqld.sh && python manage.py migrate && python manage.py runserver 0:${DJANGO_PORT}'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      SECRET_KEY: ${SECRET_KEY}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+
+
+  mysql:
+    image: mysql:5.7
+    networks:
+      - default
+    volumes:
+      - ./docker/mysql/schema.sh:/docker-entrypoint-initdb.d/schema.sh
+      - ./docker/mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+    ports:
+      - ${MYSQL_PORT}:3306
+    command: mysqld --sql_mode=""
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: Asia/Tokyo

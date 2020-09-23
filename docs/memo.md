@@ -1,0 +1,2 @@
+## templates
+templatesディレクトリ内のパスをでロードできる

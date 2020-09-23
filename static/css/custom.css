@@ -1,0 +1,75 @@
+/* Don't use it */
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.load {
+    -webkit-animation: spin 1.5s linear infinite;
+    -moz-animation: spin 1.5s linear infinite;
+    -ms-animation: spin 1.5s linear infinite;
+    -o-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(-360deg);}
+}
+@-moz-keyframes spin {
+    0% {-moz-transform: rotate(0deg);}
+    100% {-moz-transform: rotate(-360deg);}
+}
+@-ms-keyframes spin {
+    0% {-ms-transform: rotate(0deg);}
+    100% {-ms-transform: rotate(-360deg);}
+}
+@-o-keyframes spin {
+    0% {-o-transform: rotate(0deg);}
+    100% {-o-transform: rotate(-360deg);}
+}
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(-360deg);}
+}
+
+.wrapper {
+    display: flex;
+    height: 100%;
+    align-items: stretch;
+}
+
+.sidebar {
+    float: left;
+    max-width: 250px;
+    min-width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    transition: margin-left 0.5s;
+}
+
+.sidebar.active {
+    margin-left: 0px;
+}
+
+.sidebar-collapse {
+}
+
+.sidebar-collapse:hover {
+    text-decoration: none;
+}
+
+.main {
+    width: 100%;
+}
+
+.hoge {
+    background-color: #172631;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
