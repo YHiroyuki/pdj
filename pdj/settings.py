@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # FIXME
 SECRET_KEY = os.getenv('SECRET_KEY', 'h2vyse^v8q*jac=(4nx+xdru7ha1fivvhc$2brg&yc56z8hk+i')
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/passbook/'
 LOGOUT_REDIRECT_URL = '/account/login'
 LOGIN_URL = '/account/login'
 
@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
+    'passbook.apps.PassbookConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
